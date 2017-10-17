@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/leanote/leanote/app/db"
-	"github.com/leanote/leanote/app/info"
-	. "github.com/leanote/leanote/app/lea"
+	"github.com/fivernote/fivernote/app/db"
+	"github.com/fivernote/fivernote/app/info"
+	. "github.com/fivernote/fivernote/app/lea"
 	"github.com/revel/revel"
 	"gopkg.in/mgo.v2/bson"
 	"os"

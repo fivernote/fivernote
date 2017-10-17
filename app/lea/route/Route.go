@@ -1,11 +1,10 @@
 package route
 
 import (
-	"github.com/leanote/leanote/app/db"
+	"github.com/fivernote/fivernote/app/db"
 	"github.com/revel/revel"
-	//	. "github.com/leanote/leanote/app/lea"
+	//	. "github.com/fivernote/fivernote/app/lea"
 	"net/url"
-	"strings"
 )
 
 // overwite revel RouterFilter
@@ -14,8 +13,6 @@ var staticPrefix = []string{"/public", "/favicon.ico", "/css", "/js", "/images",
 
 func RouterFilter(c *revel.Controller, fc []revel.Filter) {
 	// 补全controller部分
-	path := c.Request.Request.URL.Path
-
 	// Figure out the Controller/Action
 	var route *revel.RouteMatch = revel.MainRouter.Route(c.Request.Request)
 	if route == nil {
@@ -43,20 +40,8 @@ func RouterFilter(c *revel.Controller, fc []revel.Filter) {
 		}
 	*/
 	if route.ControllerName != "Static" {
-
 		// 检查mongodb 是否lost
 		db.CheckMongoSessionLost()
-
-		// api设置
-		// leanote.com/api/user/get => ApiUser::Get
-		//*       /api/login               ApiAuth.Login,  这里的设置, 其实已经转成了ApiAuth了
-		if strings.HasPrefix(path, "/api") && !strings.HasPrefix(route.ControllerName, "Api") {
-			route.ControllerName = "Api" + route.ControllerName
-		} else if strings.HasPrefix(path, "/member") && !strings.HasPrefix(route.ControllerName, "Member") {
-			// member设置
-			route.ControllerName = "Member" + route.ControllerName
-		}
-		// end
 	}
 
 	// Set the action.

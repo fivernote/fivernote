@@ -4,20 +4,20 @@ cd..
 set SCRIPTPATH=%cd%
 
 : top src directory
-set leanotePath="%SCRIPTPATH%\bin\src\github.com\leanote"
+set fivernotePath="%SCRIPTPATH%\bin\src\github.com\fivernote"
 
-if not exist "%leanotePath%" mkdir "%leanotePath%"
+if not exist "%fivernotePath%" mkdir "%fivernotePath%"
 
 : create software link
-if exist "%leanotePath%\leanote" del /Q "%leanotePath%\leanote"
-mklink /D "%leanotePath%\leanote"  %SCRIPTPATH%
+if exist "%fivernotePath%\fivernote" del /Q "%fivernotePath%\fivernote"
+mklink /D "%fivernotePath%\fivernote"  %SCRIPTPATH%
 
 : set GOPATH
 set GOPATH="%SCRIPTPATH%\bin"
 
 : run
 if %processor_architecture%==x86 (
-	"%SCRIPTPATH%\bin\leanote-windows-386.exe" -importPath github.com/leanote/leanote
+	"%SCRIPTPATH%\bin\fivernote-windows-386.exe" -importPath github.com/fivernote/fivernote
 ) else (
-	"%SCRIPTPATH%\bin\leanote-windows-amd64.exe" -importPath github.com/leanote/leanote
+	"%SCRIPTPATH%\bin\fivernote-windows-amd64.exe" -importPath github.com/fivernote/fivernote
 )
